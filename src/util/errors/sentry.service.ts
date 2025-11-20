@@ -18,6 +18,7 @@ export interface UserContext {
 @Injectable()
 export class SentryService {
   captureException(error: unknown, context: Record<string, unknown>): void {
+    // eslint-disable-next-line no-console
     console.error('[Sentry Stub] Captured Exception:', error, context);
   }
 }

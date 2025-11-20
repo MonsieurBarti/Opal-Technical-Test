@@ -17,6 +17,7 @@ export function validate(config: Record<string, unknown>): EnvVars {
   const result = envSchema.safeParse(config);
 
   if (!result.success) {
+    // eslint-disable-next-line no-console
     console.error('❌ Invalid environment variables:', result.error);
     throw new Error('Invalid environment variables');
   }

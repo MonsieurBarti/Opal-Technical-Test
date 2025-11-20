@@ -1,0 +1,8 @@
+export const STREAKS_TOKENS = {
+  // Repositories
+  FOCUS_SESSION_REPOSITORY: Symbol('FOCUS_SESSION_REPOSITORY'),
+  USER_STREAK_REPOSITORY: Symbol('USER_STREAK_REPOSITORY'),
+
+  // Services
+  DATE_PROVIDER: Symbol('DATE_PROVIDER'),
+} as const;

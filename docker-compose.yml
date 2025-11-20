@@ -7,9 +7,10 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://nest_user:nest_password@postgres:5432/nest_db?schema=public
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres?schema=public
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     volumes:
       - .:/app
       - /app/node_modules
@@ -19,11 +20,14 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_USER=nest_user
-      - POSTGRES_PASSWORD=nest_password
-      - POSTGRES_DB=nest_db
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
